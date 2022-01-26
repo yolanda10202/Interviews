@@ -18,8 +18,8 @@ vector<vector<int>> generate_bomb(int k) {
   int n = board.size();
   
   while (k > 0) {
-    int x = random(0, n);
-    int y = random(0, n);
+    int x = random(0, n-1);
+    int y = random(0, n-1);
     // make sure the position does not have a bomb already
     while (board[x][y] == 1) {
       x = random(0, n-1);
@@ -90,3 +90,7 @@ vector<vector<int>> generate_bomb(int k) {
   return board;
 }
 ```
+
+
+## Hudson River Trading
+###
