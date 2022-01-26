@@ -82,7 +82,7 @@ vector<vector<int>> generate_bomb(int k) {
     int x = xy_arr[pair].first;
     int y = xy_arr[pair].second;
     board[x][y] = 1;
-    swap(xy_arr[pair], x_arr[n_xy]);
+    swap(xy_arr[pair], xy_arr[n_xy]);
     n_xy--;
     k--;
   }
