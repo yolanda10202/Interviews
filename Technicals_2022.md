@@ -93,4 +93,108 @@ vector<vector<int>> generate_bomb(int k) {
 
 
 ## Hudson River Trading
-###
+### Vector
+**How to implement a vector from scratch?**
+```
+private:
+  // arr is the integer pointer which stores the address of our vector
+	T* arr;
+ 
+  // capacity is the total storage of the vector
+  int max_capacity;
+ 
+  // current is the number of elements currently present in the vector
+  int current_capacity;
+```
+
+**How to deal with resizing?**
+```
+template <typename T> class vector
+{
+private:
+	T* arr;
+  int max_capacity;
+  int current_capacity;
+  
+public:
+	void push(T data) {
+    // if the number of elements is equal to the capacity, that means we don't have space to accommodate more elements. 
+    // We need to double the capacity.
+    if (current_capacity == capacity) {
+      // create an array with size that is 2 times the old array
+      T* temp = new T[2 * max_capacity];
+ 
+      // copying old array elements to new array
+      for (int i = 0; i < max_capacity; i++) {
+          temp[i] = arr[i];
+      }
+ 
+      // deleting previous array
+      delete[] arr;
+      max_capacity *= 2;
+      arr = temp;
+    }
+ 
+    // Inserting data
+    arr[current_capacity] = data;
+    current_capacity++;
+  }
+```
+
+**Why is adding an item in vector O(1) even if we resize it?**
+Ha idk i didn't answer this question cuz im dumb
+
+### Deque
+**How to implement a deque?**   
+**Implementation 1: Use doubly linked list**
+Use front and rear pointers to keep track of the front and back of the list. This way enque and deque will be O(1).
+```
+Class Node {
+	int data;
+	Node* prev;
+	Node* next;
+}
+Class deque {
+	int size;
+	Node* front;
+	Node* rear;
+}
+```
+However, we can't access intermediate elements in O(1)
+
+**Implementation 2: Using circular array**
+1. Creating an array of size n
+    - Initialize 
+        - Front = -1
+        - Rear = 0
+    - Insert one item:
+        - Front = 0
+        - Rear = 0
+2. Inserting items
+    - Front
+        - First check if deque is full or not (size n)
+        - If front == -1 or 0
+            - Front = size-1  // basically the back of the array (has stuff) or 0 (no stuff)
+        - Else 
+            - Decrement front by one and push new item to arr[front]
+    - End
+        - If rear == size-1
+            - Reinitialize rear = 0
+        - Else 
+            - Increment rear by 1 and push new item to arr[rear]
+3. Deleting items
+    - Front 
+        - First check if deque is full or not (size n)
+        - If only one element in deque
+            - Front = 0  // basically move to the back of the array
+        - Else 
+            - Front = front + 1
+    - End 
+        - First check if deque is full or not (size n)
+        - If only one element in deque
+            - Rear = size-1  // basically move to the back of the array
+        - Else 
+            - Rear = rear-1
+
+**Implementation 3: Use hash map**
+The basic idea use a hash map with index as key and linked list nodes as the value. But I also didn't figure this one out lol.
