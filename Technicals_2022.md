@@ -5,7 +5,7 @@ You have a given `random()` function that takes in 2 integers, `low` and `high`.
 Your task is to randomly generate bombs on a `nxn` game board. Given `k` bombs, design an algorithm that can place the `k` bombs on the board as randomized 
 as possible.
 
-**Brute Force:**  
+**Brute Force**  
 ```
 int random(int low, int high);
 
@@ -98,7 +98,7 @@ vector<vector<int>> generate_bomb(int k) {
 ```
 private:
   // arr is the integer pointer which stores the address of our vector
-	T* arr;
+  T* arr;
  
   // capacity is the total storage of the vector
   int max_capacity;
